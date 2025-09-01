@@ -3,9 +3,11 @@ import uuid
 import streamlit as st
 import requests
 import uuid
+import os
 
 height = 500
 width = 700
+API_URL = os.environ.get("API_URL", "http://localhost:8000")
 
 st.title("CAT VARC CHATBOT", width=700)
 passage = st.text_area("Enter passage here", height=height, width=width)
@@ -44,7 +46,7 @@ if user_input:
     
 
     # ✅ Pass passage + user_query + conversation_messages
-    response =requests.post("http://localhost:8000/ask", json=payload)
+    response = requests.post(f"{API_URL}/ask", json=payload)
     
     # print(response)
     print(response)
